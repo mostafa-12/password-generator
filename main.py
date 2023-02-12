@@ -48,9 +48,67 @@ Numbers_var.set(1)
 Symbols_var.set(1)
 
 
-def generat(number):
-    pass
+def generat(Number):
+    number=int(Number)
+    String=[]
+    if int(Upper_var.get()) == 1 and int(Lower_var.get()) == 1 and int(Numbers_var.get()) == 1 and int(Symbols_var.get()) == 1 :
+        Upper_len=int(round(number*(20/100)))
+        digits_len=int(round(number*(20/100)))
+        punc_len=int(round(number*(20/100)))
+        Lower_len=number-(Upper_len*3)
+        Upper_case=random.choices(list(string.ascii_uppercase),k=Upper_len)
+        Lower_case=random.choices(list(string.ascii_lowercase),k=Lower_len)
+        digits=random.choices(list(string.digits),k=digits_len)
+        punc=random.choices(list(string.punctuation),k=punc_len)
+        String.clear()
+        String=[Upper_case,Lower_case,punc,digits]
+    elif int(Upper_var.get() == 1) and int(Lower_var.get()) == 1 and int(Numbers_var.get()) != 1 and int(Symbols_var.get()) != 1:
+        string_len=round(number*(50/100))
+        Upper_case=random.choices(list(string.ascii_uppercase),k=string_len)
+        Lower_case=random.choices(list(string.ascii_uppercase),k=(number-string_len))
+        String.clear()
+        String=[Upper_case,Lower_case]
+    elif int(Upper_var.get()) == 1 and int(Lower_var.get()) == 1 and int(Numbers_var.get()) == 1 and int(Symbols_var.get()) != 1 :
+        Upper_len=int(round(number*(20/100)))
+        digits_len=int(round(number*(30/100)))
+        Lower_len=number-(Upper_len+digits_len)
 
+        Upper_case=random.choices(list(string.ascii_uppercase),k=Upper_len)
+        Lower_case=random.choices(list(string.ascii_lowercase),k=Lower_len)
+        digits=random.choices(list(string.digits),k=digits_len)
+        String.clear()
+        String=[Upper_case,Lower_case,digits]
+    elif int(Upper_var.get()) == 1 and int(Lower_var.get()) == 1 and int(Numbers_var.get()) != 1 and int(Symbols_var.get()) == 1:
+        Upper_len=int(round(number*(20/100)))
+        punc_len=int(round(number*(30/100)))
+        Lower_len=number-(Upper_len*+punc_len)
+
+        Upper_case=random.choices(list(string.ascii_uppercase),k=Upper_len)
+        Lower_case=random.choices(list(string.ascii_lowercase),k=Lower_len)
+        punc=random.choices(list(string.punctuation),k=punc_len)
+        String.clear()
+        String=[Upper_case,Lower_case,punc]
+    else:
+        messagebox.showerror("note","password must include Uppercase and Lowercase")
+        return
+    password_chars_list=[]
+    for chars in String:
+        for char in chars:
+            password_chars_list.append(char)
+            
+    for i in range(number):
+        random.shuffle(password_chars_list)
+        
+    password=""
+    
+    for char in password_chars_list:
+        password=password+char
+        
+    if output_var.get() != "":
+        output_var.set(f"{password}")
+            
+        
+        
 def copy_to_clipboard(text):
     clipboard.copy(f"{text}")
     messagebox.showinfo("text copied",f"your password copied to clip board")
@@ -93,7 +151,7 @@ Symbols=tkinter.Checkbutton(root,text="Symbols",bd=0,relief="flat",bg="white",fg
 Symbols.place(rely=.65,relx=.7)
 
 #Entries
-password_len=tkinter.Spinbox(root,from_=8,to=32,width=15,font=("Bahnschrift SemiBold",12,"bold"))
+password_len=tkinter.Spinbox(root,from_=8,to=32,width=15,font=("Bahnschrift SemiBold",12,"bold"),textvariable=password_len_var)
 
 password_len.place(relx=.29,rely=.54)
 
@@ -107,7 +165,7 @@ out_put.bind("<Leave>",set_output)
 #Buttons
 
 submite=tkinter.Button(root,text="generate a password",font=("Bahnschrift SemiBold",10,"bold")
-                       ,bg="white",fg="#FF1919",padx=2,pady=10,command=lambda:generat(output_var.get()))
+                       ,bg="white",fg="#FF1919",padx=2,pady=10,command=lambda:generat(password_len_var.get()))
 submite.place(rely=.73,relx=.35)
 
 
