@@ -104,8 +104,7 @@ def generat(Number):
     for char in password_chars_list:
         password=password+char
         
-    if output_var.get() != "":
-        output_var.set(f"{password}")
+    output_var.set(f"{password}")
             
         
         
@@ -128,9 +127,9 @@ image_lbl.place(relx=.05,rely=.05)
 main_text=tkinter.Label(root,text="Customize your password",font=("Bahnschrift SemiBold",16,"bold"),fg="black",bg="white",border=0,relief="flat",foreground="#0066ff")
 main_text.place(relx=.22,rely=.46)
 
-password_len_lbl=tkinter.Label(root,text="Lenth of password : ",bg="white",bd=0,relief="flat",textvariable=password_len_var)
+password_len_lbl=tkinter.Label(root,text="Lenth of password : ",bg="white",bd=0,relief="flat",font=("Bahnschrift SemiBold",10,"bold"),fg="black")
 
-password_len_lbl.place(relx=.03,rely=.55)
+password_len_lbl.place(relx=.03,rely=.547)
 
 
 # check boxes
