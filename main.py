@@ -16,7 +16,7 @@ screen_hieght=size()[1]
 
 # configure the main window
 root=tkinter.Tk()
-root.geometry(f"450x620+{int(screen_width/3)}+{int(screen_hieght/10)}")
+root.geometry(f"450x620+{int(screen_width/3)}+{int(screen_hieght/10)}") # make it in middekl of any screen
 root.title("Pasword Generator")
 root.configure(bg="white")
 root.iconbitmap("icons_logos/lock.ico")
